@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superhero Hunt</title>
+  <link rel="icon" type="image/x-icon" href="/img/superhero.ico">
+   <!--Font Awesome CDNs-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="https://kit.fontawesome.com/e8e6c63b94.js" crossorigin="anonymous"></script>
+
+  <!--Stylesheet-->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--Navbar-->
+<nav class="navigation-bar">
+  <h2 class="nav-content"><a href="index.html"><i class="fa-solid fa-mask"></i>Superhero Hunt</h2></a>
+  
+  <!--Search bar-->
+  <div class="search-bar">
+    <form action="" class="search">
+      <input type="text" id = "search" class="superhero-search" placeholder="Search superhero..">
+    </form>
+    
+  </div>
+
+</nav>
+
+
+
+<!--Single page Superhero details page-->
+<section class="superhero-details-section">
+  
+  <!--Superhero name, image and description-->
+  <div class="superhero-details">
+    <img src="img/img1.jpg" alt="" class="superhero-details-img">
+    <div class="superhero-details-info">
+      <h2 class="superhero-details-info-name">Iron Man</h2>
+      <p class="superhero-details-info-para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio cum, nisi eligendi voluptate tenetur ad saepe facilis enim ipsam blanditiis! Est vitae labore dolorum corrupti ipsam voluptas odio? Laudantium, quod.</p>
+    </div>
+    
+  </div>
+
+  <!--Super Hero additional details like comics, stories, events etc-->
+  <div class="superhero-more-info">
+    
+    <!--Comics-->
+    <div class="more-info comics" onclick="showComics()" ><h2>Comics</h2><i class="fa-solid fa-angle-down"></i></div>
+
+    <!--Comics Details Page-->
+    <div class="show-info comics-details" style="display: none;" >
+      <h2 class="availability">Total Comics available : 52</h2>
+      <h4 class="comics-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="comics-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="comics-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="comics-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+    </div>
+
+    <!--Series-->
+    <div class="more-info series" onclick="showSeries()" ><h2>Series</h2><i class="fa-solid fa-angle-down"></i></div>
+
+    <!--Series Details Page-->
+    <div class="show-info series-details" style="display: none;">
+      <h2 class="availability">Total Series available : 52</h2>
+      <h4 class="series-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="series-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="series-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="series-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+    </div>
+
+
+    <!--Stories-->
+    <div class="more-info stories" onclick="showStories()" ><h2>Stories</h2><i class="fa-solid fa-angle-down"></i></div>
+
+    <!--Stories Details Page-->
+    <div class="show-info stories-details" style="display: none;" >
+      <h2 class="availability">Total Series available : 52</h2>
+      <h4 class="stories-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="stories-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="stories-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="stories-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+    </div>
+     
+
+    <!--Events-->
+    <div class="more-info events" onclick="showEvents()" ><h2>Events</h2><i class="fa-solid fa-angle-down"></i></div>
+
+    <!--Event Details Page-->
+    <div class="show-info events-details" style="display: none;" >
+      <h2 class="availability">Total Series available : 52</h2>
+      <h4 class="events-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="events-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="events-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+      <h4 class="events-name"><i class="fa-solid fa-angle-right"></i><a href="http://gateway.marvel.com/v1/public/comics/36763" target="_blank">Ant-Man & the Wasp (2010) #3</a></h4>
+    </div>
+
+
+  </div>
+
+  
+</section>
+
+<!--Script-->
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Josefin Sans, sans-serif;
+}
+
+:root{
+  --primarycolor: #2A0944;
+  --secondaryColor:#A10035;
+}
+
+::placeholder {
+  color: wheat;
+  opacity: 0.7;
+  
+}
+body{
+  background-color: var(--primarycolor);
+}
+
+.navigation-bar{
+  display: flex;
+  flex-direction: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 14vh;
+  background-color: var(--secondaryColor);
+  padding: 0.7rem 5rem;
+  color: wheat;
+  font-size: 1.5rem;
+  box-shadow: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.nav-content{
+  font-size: 2rem;
+}
+
+.nav-content a{
+  text-decoration: none;
+  color: wheat;
+}
+
+.fa-solid{
+  margin-right: 15px;
+}
+
+.superhero-search{
+  background-color: transparent;
+  border: 2.5px solid wheat;
+  padding:1rem 3rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  color:#fff;
+  font-family: inherit;
+}
+
+.superhero-search:focus{
+  outline:0;
+  
+}
+
+
+.superhero-main{
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.superhero-character{
+  
+  margin: 1rem;
+  border-radius: 5px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 10%, 85% 0);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  
+  
+}
+
+.superhero-character:hover{
+  transform: translateY(-2%);
+}
+
+
+
+.superhero-img{
+  width: 250px;
+  height: 46vh;
+}
+
+.superhero-content{
+  width: 250px;
+  height: 14vh;
+  background-color: var(--secondaryColor);
+  color: wheat;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
+  margin-top: -4px;
+}
+
+.superhero-action{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.superhero-name, .fa-heart{
+  color: wheat;
+  padding: 8px 8px;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+}
+
+
+
+@media only screen and (max-width:900px){
+  .superhero-img{
+    height: 30vh;
+  }
+
+  .superhero-content{
+    height: 10vh;
+  }
+}
+
+@media only screen and (max-width:800px){
+  
+  .navigation-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    height: auto;
+    padding: 1rem 5rem;
+    
+  }
+}
+
+@media only screen and (max-width:570px){
+  .nav-content{
+    font-size: 1.5rem;
+  }
+  .superhero-content{
+    height: 8vh;
+  }
+}
+
+
+
+
+
+/*Super hero details page */
+
+.superhero-details{
+  margin: 10px 3rem;
+  display: flex;
+  
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: rgba(0, 0, 0, 0.26);
+  padding: 10px;
+  border-radius: 5px;
+  color: wheat;
+}
+
+.superhero-details-img{
+  width: 150px;
+}
+
+.superhero-details-info{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.superhero-more-info{
+  margin: 10px 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.more-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+  background-color: var(--secondaryColor);
+  padding: 1rem;
+  color: wheat;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.show-info{
+  
+  flex-direction: column;
+  
+  align-items: flex-start;
+  gap: 0.5rem;
+  
+  background-color: var(--primarycolor);
+}
+
+.show-info h2, i, h4, h4 a{
+  text-decoration: none;
+  color: wheat;
+}
+
+.show-info h4 {
+  padding: 0 20px;
+}
+
+
