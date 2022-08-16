@@ -93,12 +93,12 @@ body{
 
 
 .superhero-img{
-  width: 250px;
+  width: 290px;
   height: 46vh;
 }
 
 .superhero-content{
-  width: 250px;
+  width: 290px;
   height: 14vh;
   background-color: var(--secondaryColor);
   color: wheat;
@@ -124,42 +124,6 @@ body{
 
 
 
-@media only screen and (max-width:900px){
-  .superhero-img{
-    height: 30vh;
-  }
-
-  .superhero-content{
-    height: 10vh;
-  }
-}
-
-@media only screen and (max-width:800px){
-  
-  .navigation-bar{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    height: auto;
-    padding: 1rem 5rem;
-    
-  }
-}
-
-@media only screen and (max-width:570px){
-  .nav-content{
-    font-size: 1.5rem;
-  }
-  .superhero-content{
-    height: 8vh;
-  }
-}
-
-
-
-
-
 /*Super hero details page */
 
 .superhero-details{
@@ -182,6 +146,7 @@ body{
   align-items: flex-start;
   justify-content: space-evenly;
   flex-direction: column;
+  gap: 0.5rem;
 }
 .superhero-more-info{
   margin: 10px 3rem;
@@ -216,9 +181,89 @@ body{
   color: wheat;
 }
 
+.show-info h2 {
+  
+  font-size: 1.5rem;
+}
+
 .show-info h4 {
   padding: 0 20px;
   font-size: 0.9rem;
 }
+
+
+
+@media only screen and (max-width:900px){
+  .superhero-img{
+    height: 35vh;
+  }
+
+  .superhero-content{
+    height: 10vh;
+  }
+}
+
+@media only screen and (max-width:800px){
+  
+  .navigation-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    height: auto;
+    padding: 1rem 5rem;
+    
+  }
+}
+
+@media only screen and (max-width:570px){
+  .nav-content{
+    font-size: 1.2rem;
+  }
+  .superhero-content{
+    height: 8vh;
+  }
+  .superhero-search{
+    background-color: transparent;
+    border: 1.5px solid wheat;
+    padding: 0.5rem 2rem;
+    border-radius: 50px;
+    font-size: .9rem;
+    color:#fff;
+    font-family: inherit;
+  }
+
+  .superhero-details {
+    margin: 10px 3rem;
+    display: flex;
+    gap: 1rem;
+    background-color: rgba(0, 0, 0, 0.26);
+    padding: 16px;
+    border-radius: 5px;
+    color: wheat;
+    flex-direction: column;
+  }
+
+  .superhero-details-img{
+    width: auto;
+  }
+  .show-info h2 {
+  
+    font-size: 1.2rem;
+  }
+
+  .show-info h4 {
+    
+    font-size: 12px;
+    
+    margin-bottom: 5px;
+  }
+}
+
+
+
+
+
+
 
 

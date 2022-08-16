@@ -10,14 +10,14 @@
 // console.log(targerUrl);
 
 //target URL
-const targetUrl = 'https://gateway.marvel.com/v1/public/characters?ts=1&apikey=40aee22aa299751916a8415647973013&hash=6e4ee48831a71ddd5ca9ff0dcbb70fea';
+const targetUrl = SECRET_KEY.targetUrl;
 
 
-const searchURL2 = 'https://gateway.marvel.com/v1/public/characters?name=&ts=1&apikey=40aee22aa299751916a8415647973013&hash=6e4ee48831a71ddd5ca9ff0dcbb70fea';
 
-const searchURL = 'https://gateway.marvel.com/v1/public/characters?name=';
 
-const restURL = '&ts=1&apikey=40aee22aa299751916a8415647973013&hash=6e4ee48831a71ddd5ca9ff0dcbb70fea';
+const searchURL = SECRET_KEY.searchURL;
+
+const restURL = SECRET_KEY.restURL;
 
 const superHeroSection = document.querySelector('.superhero-main');
 
