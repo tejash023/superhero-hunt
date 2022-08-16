@@ -1,13 +1,4 @@
-// const getApiHash = require('marvel-api-hash-generator').getApiHash;
-// const timeStamp = 1;
-// const privateKey = 'b985686c1c0b6f14a9fd0e49a2689bdd85a863bb';
-// const publicKey = '40aee22aa299751916a8415647973013';
-// const hashValue = getApiHash(timeStamp, privateKey, publicKey);
 
-// const requestConstantCharacters = 'https://gateway.marvel.com/v1/public/characters?';
-// const targerUrl = `${requestConstantCharacters}ts=${timeStamp}&apikey=${publicKey}&hash=${hashValue}`;
-// // https://gateway.marvel.com/v1/public/characters?ts=1&apikey=<public-key>&hash=09fe991c34996e64c0424e446f27c9f0
-// console.log(targerUrl);
 
 //target URL
 const targetUrl = SECRET_KEY.targetUrl;
