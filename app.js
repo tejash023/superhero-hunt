@@ -35,42 +35,23 @@ if(superHeroSection){
     superHeroSection.innerHTML = '';
     data.forEach(characters => {
 
-        let like;
-        if(localStorage.getItem('tasks') === null){
-          like = 'fa-regular';
-        }else{
-          //console.log('inside else');
-          tasks = JSON.parse(localStorage.getItem('tasks'));
-          //console.log(tasks);
-          tasks.forEach(task =>{
-            //console.log(task.id == characters.id);
-            if(task.id == characters.id){
-              like = 'fa-solid';
-            }else{
-              like = 'fa-regular';
-            }
-          })
-        }
-      
-        //console.log(characters.name + 'true');
-        const characterInfo = document.createElement('div');
-      
-        characterInfo.classList.add('superhero-character');
-        //grabbing the id and sending it over as query parameter when navigated to single page
-        characterInfo.innerHTML = ` <a href = "singlepage.html?id=${characters.id}" class = "single-page" id = "${characters.id}">
-        <img src="${characters.thumbnail.path +  '.' + characters.thumbnail.extension}" alt="" class="superhero-img"></a>
-      
-        <div class="superhero-content">
-          
-            <h2 class="superhero-name">${characters.name}</h2>
-            <i id="like" class="${like} fa-heart"></i>
-          
-        </div>
-        `
-        superHeroSection.appendChild(characterInfo);
-        //listenForLikes();
+      //console.log(characters.name + 'true');
+      const characterInfo = document.createElement('div');
+    
+      characterInfo.classList.add('superhero-character');
+      //grabbing the id and sending it over as query parameter when navigated to single page
+      characterInfo.innerHTML = ` <a href = "singlepage.html?id=${characters.id}" class = "single-page" id = "${characters.id}">
+      <img src="${characters.thumbnail.path +  '.' + characters.thumbnail.extension}" alt="" class="superhero-img"></a>
+    
+      <div class="superhero-content">
         
+          <h2 class="superhero-name">${characters.name}</h2>
+          <i id="like" class="fa-regular fa-heart"></i>
         
+      </div>
+      `
+      superHeroSection.appendChild(characterInfo);
+      
     });
   }
 }
@@ -86,9 +67,9 @@ document.addEventListener('submit', (e) =>{
     setTimeout(listenForLikes,3000);
     
   }
-
   e.preventDefault();
 });
+
 
 //get favorite data
 const getFaveData = (elem) =>{
@@ -140,22 +121,21 @@ const removeFavData = (elem) =>{
 //listenForLikes();
 setTimeout(listenForLikes,3000);
 
-
+//listen for likes function
 function listenForLikes(){
   const likes = document.querySelectorAll('#like');
   likes.forEach(like => {
     like.addEventListener('click', (event) => {
-      like.classList.toggle('fa-regular')
-      like.classList.toggle('fa-solid');
+      like.classList.toggle('fa-solid')
+      like.classList.toggle('fa-regular');
       if(event.target.classList.contains('fa-solid')){
-        //console.log(event.target);
         console.log('favortite added');
+        //gathering fav data to add in local storage
         getFaveData(event.target);
-        
-        
+      
       }else{
-       // console.log(event.target);
         console.log('removing favorite');
+        //gathering remove fav data to remove from local storage
         removeFavData(event.target);
       }
     })
@@ -174,17 +154,13 @@ function storeInLocalStorage(superHeroCard){
   }else{
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
-  
-
   if (!tasks.includes(superHeroCard)) {
     
     tasks.push(superHeroCard);
+    //tasks.push(superHeroCard);
+    localStorage.setItem('tasks',JSON.stringify(tasks));
     
   }
-  
-  //tasks.push(superHeroCard);
-  localStorage.setItem('tasks',JSON.stringify(tasks));
- 
 }
 
 //remove from local storage
@@ -196,16 +172,13 @@ function removeFromLocalStorage(superHeroCardRemove){
   }else{
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
-  
-  console.log(superHeroCardRemove.id);
   tasks.forEach(function(task,index){
     if(superHeroCardRemove.id === task.id){
       tasks.splice(index,1);
     }
   });
-
+  
   localStorage.setItem('tasks', JSON.stringify(tasks));
-
 }
 
 
@@ -336,7 +309,7 @@ function showComics(){
   }
 }
 
-  
+//function for toggle display on single character page  
 function showSeries(){
   var series = document.querySelector(".series-details");
   if (series.style.display === "none") {
@@ -346,6 +319,7 @@ function showSeries(){
   }
 }
 
+//function for toggle display on single character page
 function showStories(){
   var stories = document.querySelector(".stories-details");
   if (stories.style.display === "none") {
@@ -355,6 +329,7 @@ function showStories(){
   }
 }
 
+//function for toggle display on single character page
 function showEvents(){
   var events = document.querySelector(".events-details");
   if (events.style.display === "none") {

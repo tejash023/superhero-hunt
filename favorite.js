@@ -5,8 +5,6 @@ const superHeroFav = document.querySelector('.superhero-favorites');
 //add event listener for DOM content loading to fetch tasks from local storage
 document.addEventListener('DOMContentLoaded', getTasks);
 
-
-
 //get tasks from local storage
 function getTasks(){
   
@@ -22,7 +20,7 @@ function getTasks(){
       
     characterFav.classList.add('superhero-character');
     //grabbing the id and sending it over as query parameter when navigated to single page
-    characterFav.innerHTML = ` <a href = "${i.singlePageLink}" class = "single-page">
+    characterFav.innerHTML = ` <a href = "${i.singlePageLink}" class = "single-page" id = "${i.id}">
     <img src="${i.superHeroImg}" alt="" class="superhero-img"></a>
       
       <div class="superhero-content">
@@ -38,15 +36,24 @@ function getTasks(){
   
 }
 
-// document.querySelector('.superhero-content').addEventListener('click', function(){
-//   console.log('Hii');
-// })
-
-console.log(document.querySelector('.superhero-content'));
+//remove favorite
+window.onload=function(){
+  var cards = document.querySelectorAll('.superhero-content');
+  cards.forEach(card =>{
+    card.addEventListener('click',function(){
+      const idToRemove = card.parentElement.querySelector('.single-page').id;
+      if(window.confirm('Are you sure you want to remove ' + card.parentElement.querySelector('.superhero-name').textContent + ' as favorite')){
+        card.parentElement.remove();
+        removeFromLocalStorage(idToRemove);
+      }
+      
+    })
+  })
+  
+}
 
 //remove from local storage
 function removeFromLocalStorage(superHeroCardRemove){
-  // console.log(taskItem);
   let tasks;
   if(localStorage.getItem('tasks') === null){
     tasks = [];
@@ -54,13 +61,12 @@ function removeFromLocalStorage(superHeroCardRemove){
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
   
-  console.log(superHeroCardRemove.id);
   tasks.forEach(function(task,index){
-    if(superHeroCardRemove.id === task.id){
+    if(superHeroCardRemove === task.id){
       tasks.splice(index,1);
     }
   });
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
-
+  
 }
