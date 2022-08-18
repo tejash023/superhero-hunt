@@ -47,6 +47,7 @@ body{
 
 .fa-solid{
   margin-right: 15px;
+  font-size: 2rem;
 }
 
 .search-bar{
@@ -70,8 +71,9 @@ body{
   
 }
 
-#svg{
-  fill: wheat;
+.superhero-fav i{
+  font-size: 3rem;
+  margin-left: 10px;
 }
 
 
@@ -152,7 +154,7 @@ body{
 }
 
 .superhero-details-img{
-  width: 150px;
+  width: 250px;
 }
 
 .superhero-details-info{
@@ -161,6 +163,16 @@ body{
   justify-content: space-evenly;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.superhero-details-info-name{
+  font-size: 2rem;
+  padding: 10px;
+}
+
+.superhero-details-info-para{
+  padding: 10px;
+  font-size: 1.1rem;
 }
 .superhero-more-info{
   margin: 10px 3rem;
@@ -237,14 +249,22 @@ body{
   .superhero-content{
     height: 8vh;
   }
+  .fa-solid{
+    margin-right: 10px;
+    font-size: 1.5rem;
+  }
   .superhero-search{
     background-color: transparent;
     border: 1.5px solid wheat;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1.5rem;
     border-radius: 50px;
     font-size: .9rem;
     color:#fff;
     font-family: inherit;
+  }
+  .superhero-fav i{
+    font-size: 2rem;
+    margin-left: 10px;
   }
 
   .superhero-details {

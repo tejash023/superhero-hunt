@@ -1,17 +1,23 @@
+
 //superhero fav section to display fav superhero
 const superHeroFav = document.querySelector('.superhero-favorites');
 
+//add event listener for DOM content loading to fetch tasks from local storage
 document.addEventListener('DOMContentLoaded', getTasks);
+
+
+
 //get tasks from local storage
 function getTasks(){
+  
   let tasks;
   if(localStorage.getItem('tasks') === null){
     tasks = [];
   }else{
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
-
   tasks.forEach(function(i){
+    
     const characterFav = document.createElement('div');
       
     characterFav.classList.add('superhero-character');
@@ -30,4 +36,31 @@ function getTasks(){
 
   });
   
+}
+
+// document.querySelector('.superhero-content').addEventListener('click', function(){
+//   console.log('Hii');
+// })
+
+console.log(document.querySelector('.superhero-content'));
+
+//remove from local storage
+function removeFromLocalStorage(superHeroCardRemove){
+  // console.log(taskItem);
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  
+  console.log(superHeroCardRemove.id);
+  tasks.forEach(function(task,index){
+    if(superHeroCardRemove.id === task.id){
+      tasks.splice(index,1);
+    }
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
 }

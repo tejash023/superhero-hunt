@@ -34,6 +34,23 @@ if(superHeroSection){
   function showCharacters(data){
     superHeroSection.innerHTML = '';
     data.forEach(characters => {
+
+        let like;
+        if(localStorage.getItem('tasks') === null){
+          like = 'fa-regular';
+        }else{
+          //console.log('inside else');
+          tasks = JSON.parse(localStorage.getItem('tasks'));
+          //console.log(tasks);
+          tasks.forEach(task =>{
+            //console.log(task.id == characters.id);
+            if(task.id == characters.id){
+              like = 'fa-solid';
+            }else{
+              like = 'fa-regular';
+            }
+          })
+        }
       
         //console.log(characters.name + 'true');
         const characterInfo = document.createElement('div');
@@ -46,7 +63,7 @@ if(superHeroSection){
         <div class="superhero-content">
           
             <h2 class="superhero-name">${characters.name}</h2>
-            <i id="like" class="fa-regular fa-heart"></i>
+            <i id="like" class="${like} fa-heart"></i>
           
         </div>
         `
