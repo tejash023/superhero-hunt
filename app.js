@@ -1,22 +1,26 @@
 
-
 //target URL
 const targetUrl = SECRET_KEY.targetUrl;
 
-
-
-
+//search URL
 const searchURL = SECRET_KEY.searchURL;
 
 const restURL = SECRET_KEY.restURL;
 
+
+/* *************** HOMEPAGE Section ******************** */
+
+//superhero main section to display superhero
 const superHeroSection = document.querySelector('.superhero-main');
 
+//superhero fav section to display fav superhero
+const superHeroFav = document.querySelector('.superhero-favorites');
 
-//display characets on page load
+
+//function to display characets on page load
 getCharacters(targetUrl);
 
-//get Character
+//get Character - fetching characters from marvel api
 function getCharacters(url){
   fetch(url).then(res => res.json()).then (data => {
     //console.log(data.data.results);
@@ -25,7 +29,7 @@ function getCharacters(url){
   });
 }
 
-//show characters
+//using the fetched data from marvel api, displaying it on the homepage
 if(superHeroSection){
   function showCharacters(data){
     superHeroSection.innerHTML = '';
@@ -35,45 +39,180 @@ if(superHeroSection){
         const characterInfo = document.createElement('div');
       
         characterInfo.classList.add('superhero-character');
-        characterInfo.innerHTML = ` <a href = "singlepage.html?id=${characters.id}">
+        //grabbing the id and sending it over as query parameter when navigated to single page
+        characterInfo.innerHTML = ` <a href = "singlepage.html?id=${characters.id}" class = "single-page" id = "${characters.id}">
         <img src="${characters.thumbnail.path +  '.' + characters.thumbnail.extension}" alt="" class="superhero-img"></a>
       
         <div class="superhero-content">
           
             <h2 class="superhero-name">${characters.name}</h2>
-            <i id = "likeButton" class="fa-regular fa-heart"></i>
+            <i id="like" class="fa-regular fa-heart"></i>
           
         </div>
         `
         superHeroSection.appendChild(characterInfo);
+        //listenForLikes();
         
-      
-      //console.log(singleCharacterURL);
-      
-  
+        
     });
-  
-    document.querySelector('.superhero-character').addEventListener('click',function(){
-      console.log(singleCharacterURL);
-    });
-  
+  }
+}
+
+
+//search characters
+document.addEventListener('submit', (e) =>{
+  const searchInput = search.value;
+  console.log(searchInput);
+  if(searchInput){
+    
+    getCharacters(searchURL + searchInput + restURL);
+    setTimeout(listenForLikes,3000);
     
   }
+
+  e.preventDefault();
+});
+
+//get favorite data
+const getFaveData = (elem) =>{
+  console.log(elem);
+  const parent = elem.parentElement.parentElement;
+  
+  const id = parent.querySelector('.single-page').id;
+  const name = parent.querySelector('.superhero-name').textContent;
+  const img = parent.querySelector('.superhero-img').src;
+  const singlePageLink = parent.querySelector('.single-page').href;
+  
+  
+  const superHeroCard = {
+    id: id,
+    superheroName: name,
+    superHeroImg: img,
+    singlePageLink: singlePageLink
+    
+  }
+  //console.log(superHeroCard);
+  storeInLocalStorage(superHeroCard);
+  
+}
+
+
+//remove fav data
+const removeFavData = (elem) =>{
+  
+  const parent = elem.parentElement.parentElement;
+  
+  const id = parent.querySelector('.single-page').id;
+  const name = parent.querySelector('.superhero-name').textContent;
+  const img = parent.querySelector('.superhero-img').src;
+  const singlePageLink = parent.querySelector('.single-page').href;
+  
+  
+  const superHeroCardRemove = {
+    id: id,
+    superheroName: name,
+    superHeroImg: img,
+    singlePageLink: singlePageLink
+    
+  }
+  //console.log(superHeroCard);
+  removeFromLocalStorage(superHeroCardRemove);
+  
+}
+
+//listenForLikes();
+setTimeout(listenForLikes,3000);
+
+
+function listenForLikes(){
+  const likes = document.querySelectorAll('#like');
+  likes.forEach(like => {
+    like.addEventListener('click', (event) => {
+      like.classList.toggle('fa-regular')
+      like.classList.toggle('fa-solid');
+      if(event.target.classList.contains('fa-solid')){
+        //console.log(event.target);
+        console.log('favortite added');
+        getFaveData(event.target);
+        
+        
+      }else{
+       // console.log(event.target);
+        console.log('removing favorite');
+        removeFavData(event.target);
+      }
+    })
+  })
 }
 
 
 
 
 
+//store in local storage
+function storeInLocalStorage(superHeroCard){
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  
+
+  if (!tasks.includes(superHeroCard)) {
+    
+    tasks.push(superHeroCard);
+    
+  }
+  
+  //tasks.push(superHeroCard);
+  localStorage.setItem('tasks',JSON.stringify(tasks));
+ 
+}
+
+//remove from local storage
+function removeFromLocalStorage(superHeroCardRemove){
+  // console.log(taskItem);
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  
+  console.log(superHeroCardRemove.id);
+  tasks.forEach(function(task,index){
+    if(superHeroCardRemove.id === task.id){
+      tasks.splice(index,1);
+    }
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
+}
 
 
+  
+
+
+
+
+
+/* *************** Single Hero Section ******************** */
+
+//fetching the base url and getting the id from the base url
 var baseUrl = (window.location).href;
 var koopId = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
-console.log(koopId);
-var singleCharacterURL = `https://gateway.marvel.com/v1/public/characters/${koopId}?ts=1&apikey=40aee22aa299751916a8415647973013&hash=6e4ee48831a71ddd5ca9ff0dcbb70fea`;
+// console.log(koopId);
 
+//passing the id in API call
+var singleCharacterURL = SECRET_KEY.characterURL + koopId + SECRET_KEY.characterURLRest;
+
+
+//function to display single character when clicked on the character in homepage
 getSingleCharater(singleCharacterURL);
 
+//get Character - fetching single character by id from marvel api
 function getSingleCharater(url){
   fetch(url).then(res => res.json()).then (data => {
     console.log(data.data.results);
@@ -85,7 +224,7 @@ function getSingleCharater(url){
 const singleCharacter = document.querySelector('.superhero-details-section');
 
 
-//Show Single Character
+//using the fetched data from marvel api, displaying it on the single character page
 function showSingleCharacters(data){
   singleCharacter.innerHTML = '';
   data.forEach(character => {
@@ -99,6 +238,8 @@ function showSingleCharacters(data){
       </div>
     `
     singleCharacter.appendChild(superheroDetails);
+
+    //validation to check if any superhero have less or no comics/series/events or stories present in the DB to avoid error
 
     if(character.comics.items.length >=3  && character.stories.items.length >=3 && character.series.items.length >=3 && character.events.items.length >=3){
         const superheroInfo = document.createElement('div');
@@ -164,36 +305,11 @@ function showSingleCharacters(data){
         singleCharacter.appendChild(superheroInfo);
       }
 
-    
-    
-    
-
-    
-
   });
 }
 
 
-
-//search characters
-document.addEventListener('submit', (e) =>{
-  const searchInput = search.value;
-
-  if(searchInput){
-    getCharacters(searchURL + searchInput + restURL);
-    
-  
-  }
-
-  e.preventDefault();
-});
-
-
-
-
-
-
-
+//function for toggle display on single character page
 function showComics(){
   var comics = document.querySelector(".comics-details");
   if (comics.style.display === "none") {
