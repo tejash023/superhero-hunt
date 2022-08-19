@@ -14,7 +14,7 @@ function getTasks(){
   }else{
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
-  tasks.forEach(function(i){
+  tasks.forEach((i) => {
     
     const characterFav = document.createElement('div');
       

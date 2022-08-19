@@ -30,12 +30,12 @@ function getCharacters(url){
 }
 
 
-//var like = 'fa-regular';
+
 //using the fetched data from marvel api, displaying it on the homepage
 if(superHeroSection){
   function showCharacters(data){
-    superHeroSection.innerHTML = '';
 
+    superHeroSection.innerHTML = '';
     //fetching liked superheroes from local storage
     let likedSuperHero = getSuperHeroList();
     const persistSuperheroLikes = likedSuperHero.map(t => t.id);
@@ -163,13 +163,7 @@ function storeInLocalStorage(superHeroCard){
 
 //remove from local storage
 function removeFromLocalStorage(superHeroCardRemove){
-  // console.log(taskItem);
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  }else{
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
+  let tasks = getSuperHeroList();
   tasks.forEach(function(task,index){
     if(superHeroCardRemove === task.id){
       tasks.splice(index,1);
