@@ -173,6 +173,7 @@ body{
 .superhero-details-info-para{
   padding: 10px;
   font-size: 1.1rem;
+  line-height: 25px;
 }
 .superhero-more-info{
   margin: 10px 3rem;
@@ -191,6 +192,12 @@ body{
   color: wheat;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.more-info h2{
+  font-size: 1.25rem;
+  line-height: 25px;
+
 }
 
 .show-info{
