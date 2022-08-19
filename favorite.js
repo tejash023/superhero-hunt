@@ -38,12 +38,13 @@ function getTasks(){
 
 //remove favorite
 window.onload=function(){
-  var cards = document.querySelectorAll('.superhero-content');
+  var cards = document.querySelectorAll('#like');
   cards.forEach(card =>{
     card.addEventListener('click',function(){
-      const idToRemove = card.parentElement.querySelector('.single-page').id;
+      const idToRemove = card.parentElement.parentElement.querySelector('.single-page').id;;
+      console.log(idToRemove);
       if(window.confirm('Are you sure you want to remove ' + card.parentElement.querySelector('.superhero-name').textContent + ' as favorite')){
-        card.parentElement.remove();
+        card.parentElement.parentElement.remove();
         removeFromLocalStorage(idToRemove);
       }
       

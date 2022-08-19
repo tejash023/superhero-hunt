@@ -217,6 +217,13 @@ body{
   font-size: 0.9rem;
 }
 
+.favorites-heading{
+  text-align: center;
+  color: wheat;
+  font-size: 3rem;
+  margin: 20px 0;
+}
+
 
 
 @media only screen and (max-width:900px){
@@ -291,6 +298,12 @@ body{
     font-size: 12px;
     
     margin-bottom: 5px;
+  }
+  .favorites-heading{
+    text-align: center;
+    color: wheat;
+    font-size: 1.5rem;
+    margin: 10px 0;
   }
 }
 

@@ -29,16 +29,35 @@ function getCharacters(url){
   });
 }
 
+
+//var like = 'fa-regular';
 //using the fetched data from marvel api, displaying it on the homepage
 if(superHeroSection){
   function showCharacters(data){
     superHeroSection.innerHTML = '';
+
+    //fetching liked superheroes from local storage
+    let likedSuperHero = getSuperHeroList();
+    const persistSuperheroLikes = likedSuperHero.map(t => t.id);
+    
+    //function to show likes being persisted in the frontend
+    function likeCheck(id){
+      
+      for(var i = 0; i < persistSuperheroLikes.length; i++){
+        if(id == persistSuperheroLikes[i]){
+          return 'fa-solid';
+        }
+      }
+      return 'fa-regular';
+    }
+    
+    
     data.forEach(characters => {
 
-      //console.log(characters.name + 'true');
       const characterInfo = document.createElement('div');
     
       characterInfo.classList.add('superhero-character');
+      
       //grabbing the id and sending it over as query parameter when navigated to single page
       characterInfo.innerHTML = ` <a href = "singlepage.html?id=${characters.id}" class = "single-page" id = "${characters.id}">
       <img src="${characters.thumbnail.path +  '.' + characters.thumbnail.extension}" alt="" class="superhero-img"></a>
@@ -46,7 +65,7 @@ if(superHeroSection){
       <div class="superhero-content">
         
           <h2 class="superhero-name">${characters.name}</h2>
-          <i id="like" class="fa-regular fa-heart"></i>
+          <i id="like" class="${likeCheck(characters.id)} fa-heart"></i>
         
       </div>
       `
@@ -73,14 +92,13 @@ document.addEventListener('submit', (e) =>{
 
 //get favorite data
 const getFaveData = (elem) =>{
-  console.log(elem);
+  
   const parent = elem.parentElement.parentElement;
   
   const id = parent.querySelector('.single-page').id;
   const name = parent.querySelector('.superhero-name').textContent;
   const img = parent.querySelector('.superhero-img').src;
   const singlePageLink = parent.querySelector('.single-page').href;
-  
   
   const superHeroCard = {
     id: id,
@@ -91,31 +109,14 @@ const getFaveData = (elem) =>{
   }
   //console.log(superHeroCard);
   storeInLocalStorage(superHeroCard);
-  
 }
 
 
 //remove fav data
 const removeFavData = (elem) =>{
-  
   const parent = elem.parentElement.parentElement;
-  
   const id = parent.querySelector('.single-page').id;
-  const name = parent.querySelector('.superhero-name').textContent;
-  const img = parent.querySelector('.superhero-img').src;
-  const singlePageLink = parent.querySelector('.single-page').href;
-  
-  
-  const superHeroCardRemove = {
-    id: id,
-    superheroName: name,
-    superHeroImg: img,
-    singlePageLink: singlePageLink
-    
-  }
-  //console.log(superHeroCard);
-  removeFromLocalStorage(superHeroCardRemove);
-  
+  removeFromLocalStorage(id);
 }
 
 //listenForLikes();
@@ -132,11 +133,12 @@ function listenForLikes(){
         console.log('favortite added');
         //gathering fav data to add in local storage
         getFaveData(event.target);
-      
+        
       }else{
         console.log('removing favorite');
         //gathering remove fav data to remove from local storage
         removeFavData(event.target);
+        //like = 'fa-regular'
       }
     })
   })
@@ -148,19 +150,15 @@ function listenForLikes(){
 
 //store in local storage
 function storeInLocalStorage(superHeroCard){
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  }else{
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
+  let tasks = getSuperHeroList();
   if (!tasks.includes(superHeroCard)) {
     
     tasks.push(superHeroCard);
-    //tasks.push(superHeroCard);
+    
     localStorage.setItem('tasks',JSON.stringify(tasks));
     
   }
+
 }
 
 //remove from local storage
@@ -173,7 +171,7 @@ function removeFromLocalStorage(superHeroCardRemove){
     tasks = JSON.parse(localStorage.getItem('tasks'));
   }
   tasks.forEach(function(task,index){
-    if(superHeroCardRemove.id === task.id){
+    if(superHeroCardRemove === task.id){
       tasks.splice(index,1);
     }
   });
@@ -181,6 +179,16 @@ function removeFromLocalStorage(superHeroCardRemove){
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+
+function getSuperHeroList(){
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  return tasks;
+}
 
   
 
